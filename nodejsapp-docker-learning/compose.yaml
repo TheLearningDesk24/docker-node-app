@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs-docker-learning:single
+    container_name: nodejs-learning-app
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+# This example has one service, so a custom network and volume are not required.
+# Compose creates a default network automatically.
+#
+# To build using the multi-stage Dockerfile, change the build section to:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.multistage

@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-docker-learning",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Beginner-friendly Node.js app for learning Docker single-stage, multi-stage, and Compose.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
